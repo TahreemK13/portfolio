@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Tahreem Karim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #2a9d8f;
+      --teal-dark: #1f7a6e;
+      --teal-faint: #e8f5f3;
+      --amber: #e07a30;
+      --ink: #1c1c1c;
+      --ink-mid: #555;
+      --ink-light: #888;
+      --ink-faint: #bbb;
+      --rule: #e8e4de;
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --tag-viz: #e8f5f3;
+      --tag-viz-ink: #1f6e63;
+      --tag-code: #f0ede6;
+      --tag-code-ink: #5a3e1b;
+      --tag-pres: #f3eef8;
+      --tag-pres-ink: #4a2d6e;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,248,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      padding: 1.1rem 0;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-light);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.active {
+      color: var(--teal);
+      border-bottom: 1.5px solid var(--teal);
+      padding-bottom: 2px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.8rem;
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .header-right {
+      padding-bottom: 0.4rem;
+    }
+    .header-right p {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 380px;
+    }
+    .header-right p + p { margin-top: 0.75rem; }
+    .header-links {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .header-link {
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .header-link:hover { color: var(--teal-dark); border-color: var(--teal-dark); }
+    .header-link.amber { color: var(--amber); border-color: var(--amber); }
+
+    /* ── FILTER ── */
+    .filter-row {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-right: 0.5rem;
+    }
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 0.28rem 0.9rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--ink-light);
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .filter-btn:hover { border-color: var(--ink-light); color: var(--ink); }
+    .filter-btn.active { background: var(--teal); border-color: var(--teal); color: white; }
+
+    /* ── GRID ── */
+    .portfolio-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+    .card.hidden { display: none; }
+
+    /* Featured card spans 2 columns */
+    .card.featured {
+      grid-column: span 2;
+    }
+    .card.featured .card-visual {
+      height: 280px;
+    }
+
+    .card-visual {
+      height: 200px;
+      overflow: hidden;
+      background: #f0ede8;
+      position: relative;
+    }
+    .card-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-visual img { transform: scale(1.03); }
+
+    /* Placeholder visual for cards without images */
+    .card-visual-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-faint);
+    }
+    .viz-placeholder { background: linear-gradient(135deg, #e8f5f3 0%, #d4eeea 100%); }
+    .code-placeholder { background: linear-gradient(135deg, #f5f0e8 0%, #ede4d0 100%); }
+    .pres-placeholder { background: linear-gradient(135deg, #f3eef8 0%, #e8e0f0 100%); }
+
+    /* Placeholder chart SVG lines */
+    .placeholder-chart {
+      width: 100%;
+      height: 100%;
+      opacity: 0.4;
+    }
+
+    .card-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.18rem 0.5rem;
+      border-radius: 2px;
+    }
+    .tag-viz  { background: var(--tag-viz);  color: var(--tag-viz-ink); }
+    .tag-code { background: var(--tag-code); color: var(--tag-code-ink); }
+    .tag-pres { background: var(--tag-pres); color: var(--tag-pres-ink); }
+
+    .card-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .card.featured .card-title { font-size: 1.5rem; }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .card-tools {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .tool-chip {
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .tool-chip + .tool-chip::before {
+      content: '·';
+      margin-right: 0.4rem;
+    }
+    .card-link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .card-link:hover { color: var(--teal-dark); }
+    .card-link svg { transition: transform 0.15s; }
+    .card-link:hover svg { transform: translateX(2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    footer p { font-size: 0.8rem; color: var(--ink-faint); }
+
+    /* ── FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card {
+      animation: fadeUp 0.4s ease both;
+    }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.2s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .card.featured { grid-column: span 2; }
+      .page-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .page-header h1 { font-size: 2.8rem; }
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid { grid-template-columns: 1fr; padding: 2rem 1.25rem 4rem; }
+      .card.featured { grid-column: span 1; }
+      .nav-inner { padding: 0 1.25rem; }
+      .page-header { padding: 3rem 1.25rem 2rem; }
+      .filter-row { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">Tahreem Karim</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/portfolio" class="active">Portfolio</a></li>
+      <li><a href="/resources">Resources</a></li>
+      <li><a href="/now">Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div>
+    <h1>Science,<br><em>made</em><br>visible.</h1>
+  </div>
+  <div class="header-right">
+    <p>Computational biology meets design. I build visualizations, tools, and presentations that make complex biological data legible — for researchers, collaborators, and anyone curious.</p>
+    <p>Master's student in Applied Data Science · Computational Biologist<br>
+    UMich · UC Berkeley · Seanome · UCSF · CZ Biohub</p>
+    <div class="header-links">
+      <a class="header-link" href="https://github.com" target="_blank">GitHub</a>
+      <a class="header-link" href="#">LinkedIn</a>
+      <a class="header-link amber" href="#">CV ↓</a>
+    </div>
+  </div>
+</header>
+
+<div class="filter-row">
+  <span class="filter-label">Show</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="viz">Visualizations</button>
+  <button class="filter-btn" data-filter="code">Code & Tools</button>
+  <button class="filter-btn" data-filter="pres">Presentations</button>
+</div>
+
+<div class="portfolio-grid">
+
+  <!-- FEATURED: Vulva Aging Viz -->
+  <article class="card featured" data-type="viz">
+    <div class="card-visual viz-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#2a9d8f" stroke-width="1" fill="none" opacity="0.5">
+          <line x1="60" y1="240" x2="560" y2="240"/>
+          <line x1="60" y1="40"  x2="60"  y2="240"/>
+          <!-- bars group 1 -->
+          <rect x="80"  y="120" width="18" height="120" fill="#2a9d8f" opacity="0.4"/>
+          <rect x="102" y="90"  width="18" height="150" fill="#2a9d8f" opacity="0.6"/>
+          <rect x="124" y="150" width="18" height="90"  fill="#2a9d8f" opacity="0.3"/>
+          <!-- bars group 2 -->
+          <rect x="180" y="80"  width="18" height="160" fill="#e07a30" opacity="0.4"/>
+          <rect x="202" y="110" width="18" height="130" fill="#e07a30" opacity="0.6"/>
+          <rect x="224" y="60"  width="18" height="180" fill="#e07a30" opacity="0.3"/>
+          <!-- bars group 3 -->
+          <rect x="280" y="100" width="18" height="140" fill="#2a9d8f" opacity="0.4"/>
+          <rect x="302" y="130" width="18" height="110" fill="#2a9d8f" opacity="0.6"/>
+          <rect x="324" y="70"  width="18" height="170" fill="#2a9d8f" opacity="0.3"/>
+          <!-- bars group 4 -->
+          <rect x="380" y="90"  width="18" height="150" fill="#e07a30" opacity="0.4"/>
+          <rect x="402" y="50"  width="18" height="190" fill="#e07a30" opacity="0.6"/>
+          <rect x="424" y="120" width="18" height="120" fill="#e07a30" opacity="0.3"/>
+          <!-- bars group 5 -->
+          <rect x="480" y="140" width="18" height="100" fill="#2a9d8f" opacity="0.4"/>
+          <rect x="502" y="80"  width="18" height="160" fill="#2a9d8f" opacity="0.6"/>
+          <rect x="524" y="110" width="18" height="130" fill="#2a9d8f" opacity="0.3"/>
+        </g>
+        <text x="300" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2a9d8f" opacity="0.5">Age-associated biomarker changes · 20 concatenated charts</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-viz">Visualization</span>
+        <span class="card-year">2024</span>
+      </div>
+      <h2 class="card-title">Vulva Aging Biomarker Study — Brown University</h2>
+      <p class="card-desc">20 concatenated charts generated from raw Excel data using Altair, visualizing age-associated changes in cutaneous biomarkers across vulvar disease states. Custom design built to support clinical researchers at Brown University, Providence, RI.</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">Altair</span>
+          <span class="tool-chip">Excel</span>
+        </div>
+        <a class="card-link" href="#">View project <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD: Coding Tool -->
+  <article class="card" data-type="code">
+    <div class="card-visual code-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <g font-family="JetBrains Mono" font-size="9" fill="#5a3e1b" opacity="0.45">
+          <text x="20" y="40">def process_data(df):</text>
+          <text x="32" y="56">  results = []</text>
+          <text x="32" y="72">  for gene in df.columns:</text>
+          <text x="44" y="88">    stats = compute(gene)</text>
+          <text x="44" y="104">    results.append(stats)</text>
+          <text x="32" y="120">  return pd.DataFrame(</text>
+          <text x="44" y="136">    results</text>
+          <text x="32" y="152">  )</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-code">Code</span>
+        <span class="card-year">2024</span>
+      </div>
+      <h2 class="card-title">Your Coding Project Title</h2>
+      <p class="card-desc">Brief description of what this tool does, what problem it solves, and who it's for. One or two sentences is plenty.</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">GitHub</span>
+        </div>
+        <a class="card-link" href="#">GitHub <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD: Presentation -->
+  <article class="card" data-type="pres">
+    <div class="card-visual pres-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="25" width="240" height="150" rx="3" fill="none" stroke="#4a2d6e" stroke-width="1" opacity="0.3"/>
+        <rect x="30" y="25" width="240" height="40"  rx="3" fill="#4a2d6e" opacity="0.12"/>
+        <text x="150" y="50" text-anchor="middle" font-family="Cormorant Garamond" font-size="13" fill="#4a2d6e" opacity="0.6">Presentation Title</text>
+        <line x1="55" y1="90"  x2="245" y2="90"  stroke="#4a2d6e" stroke-width="0.8" opacity="0.25"/>
+        <line x1="55" y1="108" x2="200" y2="108" stroke="#4a2d6e" stroke-width="0.8" opacity="0.2"/>
+        <line x1="55" y1="126" x2="180" y2="126" stroke="#4a2d6e" stroke-width="0.8" opacity="0.15"/>
+        <circle cx="220" cy="143" r="22" fill="none" stroke="#4a2d6e" stroke-width="1" opacity="0.2"/>
+        <circle cx="220" cy="143" r="14" fill="#4a2d6e" opacity="0.1"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-pres">Presentation</span>
+        <span class="card-year">2024</span>
+      </div>
+      <h2 class="card-title">Your Presentation Title</h2>
+      <p class="card-desc">Conference, class, or lab meeting this was presented at. What was the core argument or finding you were communicating?</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">Slides</span>
+          <span class="tool-chip">PDF</span>
+        </div>
+        <a class="card-link" href="#">View slides <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD: Viz 2 -->
+  <article class="card" data-type="viz">
+    <div class="card-visual viz-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#2a9d8f" opacity="0.4">
+          <path d="M30,160 Q80,60 130,100 Q180,140 230,40 Q260,10 270,60" stroke-width="2"/>
+          <path d="M30,170 Q80,120 130,130 Q180,140 230,80 Q260,50 270,90" stroke-width="1.5" opacity="0.5"/>
+        </g>
+        <g fill="#2a9d8f" opacity="0.5">
+          <circle cx="80"  cy="80"  r="4"/>
+          <circle cx="130" cy="100" r="3"/>
+          <circle cx="180" cy="55"  r="5"/>
+          <circle cx="230" cy="40"  r="3"/>
+          <circle cx="250" cy="70"  r="6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-viz">Visualization</span>
+        <span class="card-year">2023</span>
+      </div>
+      <h2 class="card-title">Another Visualization Project</h2>
+      <p class="card-desc">What dataset, what biological question, what did the visualization reveal or communicate that a table couldn't?</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">R</span>
+          <span class="tool-chip">ggplot2</span>
+        </div>
+        <a class="card-link" href="#">View project <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD: Code 2 -->
+  <article class="card" data-type="code">
+    <div class="card-visual code-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#5a3e1b" opacity="0.3" stroke-width="1">
+          <rect x="40"  y="30"  width="80" height="40" rx="3"/>
+          <rect x="180" y="30"  width="80" height="40" rx="3"/>
+          <rect x="110" y="130" width="80" height="40" rx="3"/>
+          <line x1="80"  y1="70"  x2="150" y2="130"/>
+          <line x1="220" y1="70"  x2="150" y2="130"/>
+        </g>
+        <text x="80"  y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a3e1b" opacity="0.5">Input</text>
+        <text x="220" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a3e1b" opacity="0.5">Process</text>
+        <text x="150" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#5a3e1b" opacity="0.5">Output</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-code">Code</span>
+        <span class="card-year">2023</span>
+      </div>
+      <h2 class="card-title">Pipeline or Analysis Script</h2>
+      <p class="card-desc">What does this automate or enable? What was the lab workflow problem it solved?</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">Bash</span>
+        </div>
+        <a class="card-link" href="#">GitHub <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<footer>
+  <p>Tahreem Karim · Tahreem.Karim@gmail.com · <a href="/" style="color: var(--teal); text-decoration:none;">tahreemkarim.xyz</a></p>
+</footer>
+
+<script>
+  const filters = document.querySelectorAll('.filter-btn');
+  const cards   = document.querySelectorAll('.card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle('hidden', f !== 'all' && card.dataset.type !== f);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
