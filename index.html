@@ -331,6 +331,13 @@
     .card-link svg { transition: transform 0.15s; }
     .card-link:hover svg { transform: translateX(2px); }
 
+    /* Dual links in footer */
+    .card-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--rule);
@@ -433,9 +440,51 @@
     </div>
   </article>
 
+  <!-- CARD: SynBioHub Parts Visualization -->
+  <article class="card" data-type="viz">
+    <div class="card-visual viz-placeholder">
+      <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" opacity="0.5">
+          <path d="M20,180 Q50,170 80,160 Q110,145 140,110 Q170,70 200,40 Q230,15 280,10" stroke="#2a9d8f" stroke-width="2"/>
+          <path d="M20,185 Q60,178 100,170 Q140,158 180,130 Q220,100 280,85" stroke="#2a9d8f" stroke-width="1.5" opacity="0.6"/>
+          <path d="M20,188 Q70,184 120,180 Q170,174 220,165 Q255,158 280,150" stroke="#2a9d8f" stroke-width="1" opacity="0.35"/>
+          <path d="M20,190 Q80,188 140,185 Q200,180 280,172" stroke="#e07a30" stroke-width="1.5" opacity="0.45"/>
+          <path d="M20,192 Q90,191 160,189 Q220,187 280,183" stroke="#2a9d8f" stroke-width="1" opacity="0.25"/>
+        </g>
+        <g fill="#2a9d8f" opacity="0.6">
+          <circle cx="280" cy="10"  r="3.5"/>
+          <circle cx="280" cy="85"  r="2.5"/>
+        </g>
+        <g font-family="JetBrains Mono" font-size="7.5" fill="#2a9d8f" opacity="0.4">
+          <text x="22" y="22">2002</text>
+          <text x="249" y="22">2016</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="tag tag-viz">Visualization</span>
+        <span class="card-year">2024</span>
+      </div>
+      <h2 class="card-title">Growth of SynBioHub Parts by Type (2002–2016)</h2>
+      <p class="card-desc">Interactive time-series tracking synthetic biology part submissions across the SynBioHub registry. SPARQL-queried RDF metadata, cleaned with pandas, rendered in Altair — with hover, legend click, and drag-to-zoom across 14 part types including Plasmid, Composite, and Promoter.</p>
+      <div class="card-footer">
+        <div class="card-tools">
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">Altair</span>
+          <span class="tool-chip">SPARQL</span>
+          <span class="tool-chip">pandas</span>
+        </div>
+        <div class="card-links">
+          <a class="card-link" href="https://tahreemk13.github.io/SynBioHub_parts_visualization/" target="_blank">Live <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+          <a class="card-link" href="https://github.com/TahreemK13/SynBioHub_parts_visualization" target="_blank">GitHub <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </article>
+
   <!-- CARD: Coding Tool -->
   <article class="card" data-type="code">
-    <div class="card-visual code-placeholder">
       <svg class="placeholder-chart" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
         <g font-family="JetBrains Mono" font-size="9" fill="#5a3e1b" opacity="0.45">
           <text x="20" y="40">def process_data(df):</text>
@@ -658,24 +707,13 @@
 </div>
 
 <footer>
-  <p>Tahreem.Karim@gmail.com · <a href="https://tahreemkarim.xyz/home" style="color: var(--teal); text-decoration:none;">tahreemkarim.xyz</a></p>
+  <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c195a0a9b3a4a4acef8aa0b3a8ac81a6aca0a8adefa2aeac">[email&#160;protected]</a> · <a href="https://tahreemkarim.xyz/home" style="color: var(--teal); text-decoration:none;">tahreemkarim.xyz</a></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const filters = document.querySelectorAll('.filter-btn');
   const cards   = document.querySelectorAll('.card');
 
   filters.forEach(btn => {
     btn.addEventListener('click', () => {
       filters.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      cards.forEach(card => {
-        card.classList.toggle('hidden', f !== 'all' && card.dataset.type !== f);
-      });
-    });
-  });
-</script>
-
-</body>
-</html>
