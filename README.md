@@ -1,5 +1,5 @@
 # Portfolio
 Live page at:
-(portfolio.tahreemkarim.xyz)[portfolio.tahreemkarim.xyz]
+portfolio.tahreemkarim.xyz
 
-Where the magic happens
+Where the magic happens (behind the scenes)
